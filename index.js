@@ -2,10 +2,10 @@ const express = require("express")
 const app = express()
 app.use(express.json())
 
-
+const env = require("dotenv")
 const HOSTNAME = "127.0.0.1"
-const PORT = 8083;
 
+env.config()
 const usersRoute = require("./controller/user")
 const productRoute = require("./controller/product")
 
@@ -24,6 +24,6 @@ app.get("*", (req, res) => {
 })
 
 
-app.listen(PORT, HOSTNAME, () => {
-    console.log(`Server is running at HOST: ${HOSTNAME} on port: ${PORT}`)
+app.listen(process.env.PORT, HOSTNAME, () => {
+    console.log(`Server is running at HOST: ${HOSTNAME} on port: ${process.env.PORT}`)
 })
